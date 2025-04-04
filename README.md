@@ -59,7 +59,7 @@ iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/install-
 The AWS CLI will open the URL and ask you to sign in to SSO.
 Follow the steps in the browser to the end.
 
-![image](https://github.com/user-attachments/assets/1ce6b467-531b-4ba7-a906-e97395dc12f2)
+![image](https://github.com/user-attachments/assets/ab6f31a5-525c-431d-914a-dbb2f4423b58)
 
 ---
 
