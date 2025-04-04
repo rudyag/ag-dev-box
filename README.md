@@ -51,8 +51,8 @@ iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/install-
 ```
 
 1. Configure your AWS profile:
-- SSO session name: agiliteksolutions
-- SSO start URL: https://d-906769f962.awsapps.com/start/
+- SSO session name: <SESSION_NAME>
+- SSO start URL: <START_URL>
 - SSO region: us-east-1
 - SSO registration scopes: (accept the default, hit enter)
 
