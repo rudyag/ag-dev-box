@@ -12,7 +12,14 @@ iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/bootstra
 
 Close the Terminal.
 
-## 2. Install tools that need user confirmation
+## 2. Make PowerShell 7 your default shell in Windows Terminal
+- Open up the Windows Terminal app
+- Go to Settings (Ctrl+,)
+- Under "Startup > Default profile" Select "PowerShell" (instead of ""Windows PowerShell")
+ 
+Close the Terminal. Now any time you open the Windows Terminal, it will default to PowerShell 7.
+
+## 3. Install tools that need user confirmation
 Open a new terminal instance with PowerShell 7.
 
 Run the following to install tools that need user confirmation.
@@ -23,7 +30,7 @@ iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/install-
 
 Close the Terminal.
 
-## 3. Install unattended tools
+## 4. Install unattended tools
 
 Open a new terminal instance with PowerShell 7.
 
@@ -35,7 +42,7 @@ iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/install-
 
 Close the Terminal.
 
-## 4. Install and configure extensions
+## 5. Install and configure extensions
 
 Run the following to install extensions and configure tools that need it.
 
