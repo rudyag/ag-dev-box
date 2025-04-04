@@ -1,12 +1,18 @@
 
-# Install VS Code
+Write-Host "`nInstalling VS Code..."
 winget install -e --id Microsoft.VisualStudioCode
 
-# Install Node.js
-winget install OpenJS.NodeJS
-
-winget install -e --id Clockify.Clockify
-winget install -e --id Amazon.AWSVPNClient
+Write-Host "`nInstalling NodeJs..."
 winget install -e --id OpenJS.NodeJS
+
+Write-Host "`nInstalling Clockify..."
+winget install -e --id Clockify.Clockify
+
+Write-Host "`nInstalling AWSVPNClient..."
+winget install -e --id Amazon.AWSVPNClient
+
+Write-Host "`nInstalling AWSCLI..."
 winget install -e --id Amazon.AWSCLI
+
+Write-Host "`nInstalling AzureCLI..."
 winget install -e --id Microsoft.AzureCLI
