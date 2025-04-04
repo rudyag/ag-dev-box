@@ -50,6 +50,17 @@ Run the following to install extensions and configure tools that need it.
 iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/install-configure-extensions.ps1 -useb | iex
 ```
 
+1. Configure your AWS profile:
+- SSO session name: agiliteksolutions
+- SSO start URL: https://d-906769f962.awsapps.com/start/
+- SSO region: us-east-1
+- SSO registration scopes: (accept the default, hit enter)
+
+The AWS CLI will open the URL and ask you to sign in to SSO.
+Follow the steps in the browser to the end.
+
+![image](https://github.com/user-attachments/assets/1ce6b467-531b-4ba7-a906-e97395dc12f2)
+
 ---
 
 
