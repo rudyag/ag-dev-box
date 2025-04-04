@@ -1,10 +1,49 @@
 # ag-dev-box
 
-## To run
+## 1. Bootstrap Machine
+
+Open up "Windows PowerShell" in the "Windows Terminal" app.
+
+Run the following to install PowerShell 7, Git, WSL, Docker Desktop.
 
 ```powershell
-iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/setup-dev-environment.ps1 -useb | iex
+iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/bootstrap-machine.ps1 -useb | iex
 ```
+
+Close the Terminal.
+
+## 2. Install tools that need user confirmation
+Open a new terminal instance with PowerShell 7.
+
+Run the following to install tools that need user confirmation.
+
+```powershell
+iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/install-tools-attended.ps1 -useb | iex
+```
+
+Close the Terminal.
+
+## 3. Install unattended tools
+
+Open a new terminal instance with PowerShell 7.
+
+Run the following to install tools that do not need user confirmation.
+
+```powershell
+iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/install-tools-unattended.ps1 -useb | iex
+```
+
+Close the Terminal.
+
+## 4. Install and configure extensions
+
+Run the following to install extensions and configure tools that need it.
+
+```powershell
+iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/install-configure-extensions.ps1 -useb | iex
+```
+
+---
 
 
 Initial error message from powershell:
