@@ -5,13 +5,13 @@ Write-Host "`nInstalling Linear..."
 winget install -e --id LinearOrbit.Linear
 
 Write-Host "`nInstalling Bruno..."
-winget install --id=Bruno.Bruno -e
+winget install -e --id=Bruno.Bruno
 
 Write-Host "`nInstalling DBeaver..."
-winget install --id=dbeaver.dbeaver -e
+winget install -e --id=dbeaver.dbeaver
 
 Write-Host "`nInstalling Python.3.12..."
-winget install --id=Python.Python.3.12 -e
+winget install -e --id=Python.Python.3.12
 
 Write-Host "`nInstalling Just..."
-winget install --id=Casey.Just -e
+winget install -e --id=Casey.Just
