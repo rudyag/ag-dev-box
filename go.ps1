@@ -30,6 +30,24 @@ function Test-CommandExists() {
     if ($SuppressReturnValue) { return } else { return $true}
 }
 
+function Test-PackageExists() {
+    Param (
+        [Parameter(Mandatory=$true)]
+        [string] $PackageName,
+
+        [switch] $SuppressReturnValue
+    )
+
+    winget find --id $PackageName > nul
+
+    if ($?) {
+        Write-InfoLog "🟩 $PackageName is available"
+        if ($SuppressReturnValue) { return } else { return $true}
+    }
+
+    Write-InfoLog "🟥 $PackageName is not available"
+    if ($SuppressReturnValue) { return } else { return $false }
+}
 
 function Ensure-CommandAvailable {
     param (
@@ -61,11 +79,43 @@ function Ensure-CommandAvailable {
         Write-InfoLog "✅ '$CommandName' is available."
         if ($SuppressReturnValue) { return } else { return $true }
     } else {
-        Write-ErrorLog "❌ '$CommandName' is not available. Check if package installation succeeded or if additional steps are needed."
+        Write-ErrorLog "❌ '$CommandName' is still not available. Check if package installation succeeded or if additional steps are needed."
         if ($SuppressReturnValue) { return } else { return $false }
     }
 }
 
+
+function Ensure-PackageAvailable {
+    param (
+        [Parameter(Mandatory=$true)]
+        [string] $PackageName,
+
+        [string] $InstallCommand = "winget install --silent --no-upgrade -e --id",  # Default to winget
+
+        [switch] $SuppressReturnValue
+    )
+
+    Write-DebugLog "Checking if '$PackageName' is available..."
+    if ((Test-PackageExists -PackageName $PackageName)) {
+        Write-InfoLog "⏩ '$PackageName' is already installed."
+        if ($SuppressReturnValue) { return } else { return $true }
+    }
+
+    Write-InfoLog "'$PackageName' not found. Running: $fullCommand"
+    $fullCommand = "$InstallCommand $PackageName"
+    Invoke-Expression $fullCommand
+
+    Write-InfoLog "✅ '$PackageName' installation done."
+
+    Write-Debug "Checking if '$PackageName' is available post-install..."
+    if ((Test-PackageExists -PackageName $PackageName)) {
+        Write-InfoLog "✅ '$PackageName' is available."
+        if ($SuppressReturnValue) { return } else { return $true }
+    } else {
+        Write-ErrorLog "❌ '$PackageName' is not available. Check if package installation succeeded or if additional steps are needed."
+        if ($SuppressReturnValue) { return } else { return $false }
+    }
+}
 
 
 # ================
@@ -179,38 +229,28 @@ switch ($Install) {
     }
     "2-attended" {
         Write-InfoLog "Installing attended tools..."
-        winget install -e --id Microsoft.VisualStudioCode
-        
-        Write-InfoLog "`nInstalling NodeJs..."
-        winget install -e --id OpenJS.NodeJS
-        
-        Write-InfoLog "`nInstalling Clockify..."
-        winget install -e --id Clockify.Clockify
-        
-        Write-InfoLog "`nInstalling AWSVPNClient..."
-        winget install -e --id Amazon.AWSVPNClient
-        
-        Write-InfoLog "`nInstalling AWSCLI..."
-        winget install -e --id Amazon.AWSCLI
-        
-        Write-InfoLog "`nInstalling AzureCLI..."
-        winget install -e --id Microsoft.AzureCLI
+        Ensure-PackageAvailable "Microsoft.VisualStudioCode" -SuppressReturnValue
+        Ensure-PackageAvailable "OpenJS.NodeJS" -SuppressReturnValue
+        Ensure-PackageAvailable "Clockify.Clockify" -SuppressReturnValue
+        Ensure-PackageAvailable "Amazon.AWSVPNClient" -SuppressReturnValue
+        Ensure-PackageAvailable "Amazon.AWSCLI" -SuppressReturnValue
+        Ensure-PackageAvailable "Microsoft.AzureCLI" -SuppressReturnValue
     }
     "3-unattended" {
         Write-InfoLog "Installing unattended tools..."
-        Write-InfoLog "`nInstalling Slack..."
+        Write-InfoLog "Installing Slack..."
         winget install -e --id SlackTechnologies.Slack
 
-        Write-InfoLog "`nInstalling Linear..."
+        Write-InfoLog "Installing Linear..."
         winget install -e --id LinearOrbit.Linear
 
-        Write-InfoLog "`nInstalling Bruno..."
+        Write-InfoLog "Installing Bruno..."
         winget install -e --id=Bruno.Bruno
 
-        Write-InfoLog "`nInstalling DBeaver..."
+        Write-InfoLog "Installing DBeaver..."
         winget install -e --id=dbeaver.dbeaver
 
-        Write-InfoLog "`nInstalling Python.3.12..."
+        Write-InfoLog "Installing Python.3.12..."
         winget install -e --id=Python.Python.3.12        
     }
     "4-extensions" {
