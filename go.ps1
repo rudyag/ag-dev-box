@@ -174,7 +174,7 @@ switch ($Install) {
         Write-InfoLog "Installing foundational tools..."
         Ensure-CommandAvailable "pwsh" "Microsoft.PowerShell" -SuppressReturnValue
         Ensure-CommandAvailable "git" "Git.Git" -SuppressReturnValue
-        wsl --install
+        Ensure-CommandAvailable "wsl" "wsl" -InstallCommand "wsl --install" -SuppressReturnValue
         Ensure-CommandAvailable "docker" "Docker.DockerDesktop" -SuppressReturnValue
     }
     "2-attended" {
