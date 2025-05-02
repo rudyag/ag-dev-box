@@ -1,33 +1,6 @@
 # ag-dev-box
 
-
-## 0. Run the pre-flight
-
-You may run the installer with a -PreFlight flag. This will only do some checks to see if you have the foundational dependencies.
-
-```powershell
-& ([scriptblock]::Create((iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/go.ps1 -useb))) -PreFlight
-```
-
-## 1. Install foundational tools
-
-These are the tools needed to install and configure everything else.
-```powershell
-& ([scriptblock]::Create((iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/go.ps1 -useb))) -Install '1-foundation'
-```
-
-## 2. Install attended tools
-
-These are the tools needed to install and configure everything else.
-```powershell
-& ([scriptblock]::Create((iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/go.ps1 -useb))) -Install '2-attended'
-```
-
----
-
-## Detailed walkthrough 
-
-### 1. Bootstrap Machine
+## 1. Bootstrap Machine
 
 Open up "Windows PowerShell" in the "Windows Terminal" app.
 
@@ -39,14 +12,14 @@ iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/bootstra
 
 Close the Terminal.
 
-### 2. Make PowerShell 7 your default shell in Windows Terminal
+## 2. Make PowerShell 7 your default shell in Windows Terminal
 - Open up the Windows Terminal app
 - Go to Settings (Ctrl+,)
 - Under "Startup > Default profile" Select "PowerShell" (instead of ""Windows PowerShell")
  
 Close the Terminal. Now any time you open the Windows Terminal, it will default to PowerShell 7.
 
-### 3. Install tools that need user confirmation
+## 3. Install tools that need user confirmation
 Open a new terminal instance with PowerShell 7.
 
 Run the following to install tools that need user confirmation.
@@ -57,7 +30,7 @@ iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/install-
 
 Close the Terminal.
 
-### 4. Install unattended tools
+## 4. Install unattended tools
 
 Open a new terminal instance with PowerShell 7.
 
@@ -69,7 +42,7 @@ iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/install-
 
 Close the Terminal.
 
-### 5. Install and configure extensions
+## 5. Install and configure extensions
 
 Run the following to install extensions and configure tools that need it.
 
