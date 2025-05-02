@@ -7,80 +7,6 @@ param (
 
 $ErrorActionPreference = "Stop" # stop the script if we hit an error
 
-if ($PreFlight) {
-    Write-Output "In PREFLIGHT CHECKS Mode. No installation or changes will be made."
-    Test-Command-Exists "pwsh"      # "Powershell is the preferred shell for hi on windows"
-    Test-Command-Exists "git"       # "Git for distributing the just recipes hi uses"
-    Test-Command-Exists "just"      # "Just does all the heavy lifting to execute recipes"
-    Test-Command-Exists "wsl"       # "WSL provides a Linux subsystem for docker and other development"
-    Test-Command-Exists "docker"    # "Docker takes care of running containers"
-} 
-
-switch ($Install) {
-    "1-foundation" {
-        Write-InfoLog "Installing foundational tools..."
-        Ensure-CommandAvailable "pwsh" "Microsoft.PowerShell" -SuppressReturnValue
-        Ensure-CommandAvailable "git" "Git.Git" -SuppressReturnValue
-        wsl --install
-        Ensure-CommandAvailable "docker" "Docker.DockerDesktop" -SuppressReturnValue
-    }
-    "2-attended" {
-        Write-InfoLog "Installing attended tools..."
-        winget install -e --id Microsoft.VisualStudioCode
-        
-        Write-InfoLog "`nInstalling NodeJs..."
-        winget install -e --id OpenJS.NodeJS
-        
-        Write-InfoLog "`nInstalling Clockify..."
-        winget install -e --id Clockify.Clockify
-        
-        Write-InfoLog "`nInstalling AWSVPNClient..."
-        winget install -e --id Amazon.AWSVPNClient
-        
-        Write-InfoLog "`nInstalling AWSCLI..."
-        winget install -e --id Amazon.AWSCLI
-        
-        Write-InfoLog "`nInstalling AzureCLI..."
-        winget install -e --id Microsoft.AzureCLI
-    }
-    "3-unattended" {
-        Write-InfoLog "Installing unattended tools..."
-        Write-InfoLog "`nInstalling Slack..."
-        winget install -e --id SlackTechnologies.Slack
-
-        Write-InfoLog "`nInstalling Linear..."
-        winget install -e --id LinearOrbit.Linear
-
-        Write-InfoLog "`nInstalling Bruno..."
-        winget install -e --id=Bruno.Bruno
-
-        Write-InfoLog "`nInstalling DBeaver..."
-        winget install -e --id=dbeaver.dbeaver
-
-        Write-InfoLog "`nInstalling Python.3.12..."
-        winget install -e --id=Python.Python.3.12        
-    }
-    "4-extensions" {
-        Write-InfoLog "Installing tool extensions..."
-        Write-InfoLog "Configuring AWS SSO for DevOps Profile..."
-        aws sso login --sso-session agiliteksolutions
-        aws configure sso --profile devops
-        Write-InfoLog "If you encounter a 'Region' issue, reach out to Gaurav to rename the region."
-        
-        
-        # Install VS Code Extensions
-        code --install-extension eamodio.gitlens
-        code --install-extension ms-python.python
-        code --install-extension ms-python.debugpy
-        code --install-extension ms-python.vscode-pylance
-        code --install-extension nefrob.vscode-just-syntax
-        
-        # Install Serverless Framework
-        npm install serverless@3 -g
-        serverless plugin install -n serverless-wsgi
-    }
-}
-
 
 # ================
 # Command / Package Management
@@ -227,4 +153,83 @@ function Write-ErrorLog {
         [string]$Message
     )
     Write-Log -Message $Message -Level "error"
+}
+
+
+
+# ================
+# MAIN
+# ================
+if ($PreFlight) {
+    Write-Output "In PREFLIGHT CHECKS Mode. No installation or changes will be made."
+    Test-CommandExists "pwsh" -SuppressReturnValue      # "Powershell is the preferred shell for hi on windows"
+    Test-CommandExists "git" -SuppressReturnValue       # "Git for distributing the just recipes hi uses"
+    Test-CommandExists "just" -SuppressReturnValue      # "Just does all the heavy lifting to execute recipes"
+    Test-CommandExists "wsl" -SuppressReturnValue       # "WSL provides a Linux subsystem for docker and other development"
+    Test-CommandExists "docker" -SuppressReturnValue    # "Docker takes care of running containers"
+} 
+
+switch ($Install) {
+    "1-foundation" {
+        Write-InfoLog "Installing foundational tools..."
+        Ensure-CommandAvailable "pwsh" "Microsoft.PowerShell" -SuppressReturnValue
+        Ensure-CommandAvailable "git" "Git.Git" -SuppressReturnValue
+        wsl --install
+        Ensure-CommandAvailable "docker" "Docker.DockerDesktop" -SuppressReturnValue
+    }
+    "2-attended" {
+        Write-InfoLog "Installing attended tools..."
+        winget install -e --id Microsoft.VisualStudioCode
+        
+        Write-InfoLog "`nInstalling NodeJs..."
+        winget install -e --id OpenJS.NodeJS
+        
+        Write-InfoLog "`nInstalling Clockify..."
+        winget install -e --id Clockify.Clockify
+        
+        Write-InfoLog "`nInstalling AWSVPNClient..."
+        winget install -e --id Amazon.AWSVPNClient
+        
+        Write-InfoLog "`nInstalling AWSCLI..."
+        winget install -e --id Amazon.AWSCLI
+        
+        Write-InfoLog "`nInstalling AzureCLI..."
+        winget install -e --id Microsoft.AzureCLI
+    }
+    "3-unattended" {
+        Write-InfoLog "Installing unattended tools..."
+        Write-InfoLog "`nInstalling Slack..."
+        winget install -e --id SlackTechnologies.Slack
+
+        Write-InfoLog "`nInstalling Linear..."
+        winget install -e --id LinearOrbit.Linear
+
+        Write-InfoLog "`nInstalling Bruno..."
+        winget install -e --id=Bruno.Bruno
+
+        Write-InfoLog "`nInstalling DBeaver..."
+        winget install -e --id=dbeaver.dbeaver
+
+        Write-InfoLog "`nInstalling Python.3.12..."
+        winget install -e --id=Python.Python.3.12        
+    }
+    "4-extensions" {
+        Write-InfoLog "Installing tool extensions..."
+        Write-InfoLog "Configuring AWS SSO for DevOps Profile..."
+        aws sso login --sso-session agiliteksolutions
+        aws configure sso --profile devops
+        Write-InfoLog "If you encounter a 'Region' issue, reach out to Gaurav to rename the region."
+        
+        
+        # Install VS Code Extensions
+        code --install-extension eamodio.gitlens
+        code --install-extension ms-python.python
+        code --install-extension ms-python.debugpy
+        code --install-extension ms-python.vscode-pylance
+        code --install-extension nefrob.vscode-just-syntax
+        
+        # Install Serverless Framework
+        npm install serverless@3 -g
+        serverless plugin install -n serverless-wsgi
+    }
 }

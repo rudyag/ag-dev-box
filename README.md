@@ -12,11 +12,20 @@ You may run the installer with a -PreFlight flag. This will only do some checks 
 ## 1. Install foundational tools
 
 These are the tools needed to install and configure everything else.
+
 ```powershell
 & ([scriptblock]::Create((iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/go.ps1 -useb))) -Install '1-foundation'
 ```
 
 ## 2. Install attended tools
+
+These are standard dev tools that need the user to click 
+
+```powershell
+& ([scriptblock]::Create((iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/go.ps1 -useb))) -Install '2-attended'
+```
+
+## 3. Install unattended tools
 
 These are the tools needed to install and configure everything else.
 ```powershell
