@@ -238,20 +238,11 @@ switch ($Install) {
     }
     "3-unattended" {
         Write-InfoLog "Installing unattended tools..."
-        Write-InfoLog "Installing Slack..."
-        winget install -e --id SlackTechnologies.Slack
-
-        Write-InfoLog "Installing Linear..."
-        winget install -e --id LinearOrbit.Linear
-
-        Write-InfoLog "Installing Bruno..."
-        winget install -e --id=Bruno.Bruno
-
-        Write-InfoLog "Installing DBeaver..."
-        winget install -e --id=dbeaver.dbeaver
-
-        Write-InfoLog "Installing Python.3.12..."
-        winget install -e --id=Python.Python.3.12        
+        Ensure-PackageAvailable "SlackTechnologies.Slack" -SuppressReturnValue
+        Ensure-PackageAvailable "LinearOrbit.Linear" -SuppressReturnValue
+        Ensure-PackageAvailable "Bruno.Bruno" -SuppressReturnValue
+        Ensure-PackageAvailable "dbeaver.dbeaver" -SuppressReturnValue
+        Ensure-PackageAvailable "Python.Python.3.12" -SuppressReturnValue
     }
     "4-extensions" {
         Write-InfoLog "Installing tool extensions..."
