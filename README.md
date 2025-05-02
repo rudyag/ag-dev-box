@@ -29,7 +29,7 @@ These are standard dev tools that need the user to click
 
 These are the tools needed to install and configure everything else.
 ```powershell
-& ([scriptblock]::Create((iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/go.ps1 -useb))) -Install '2-attended'
+& ([scriptblock]::Create((iwr https://raw.githubusercontent.com/rudyag/ag-dev-box/refs/heads/main/go.ps1 -useb))) -Install '3-unattended'
 ```
 
 ---
