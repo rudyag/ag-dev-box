@@ -113,3 +113,20 @@ Do you agree to all the source agreements terms?
 This was the error for MS 365 (also had to say 'Yes' manually)
 
 ![image](https://github.com/user-attachments/assets/ca413470-0a64-413d-b4b2-8fd6a232e3f2)
+
+
+---
+Docker Desktop
+
+Skip -- do not configure an account
+![alt text](assets/image.png)
+
+Skip the welcome survey
+![alt text](assets/image-1.png)
+
+Go to setting (cog in top right corner)
+![alt text](assets/image-2.png)
+
+Toggle "Ubuntu" under Settings > Resources > WSL Integration
+Click "Apply & restart" 
+![alt text](assets/image-3.png)
